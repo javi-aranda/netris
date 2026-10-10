@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "netris"
+version = "0.1.0"
+description = "Gymnasium environment for Game Boy Tetris emulated with PyBoy"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [{ name = "Javier Aranda" }]
+keywords = ["reinforcement-learning", "gymnasium", "tetris", "gameboy", "pyboy"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "gymnasium>=1.0",
+    "pyboy>=2.6",
+    "numpy>=1.23",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.urls]
+Homepage = "https://github.com/javi-aranda/netris"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/netris"]
+
+[tool.pytest.ini_options]
+markers = ["rom: requires a GameBoy Tetris ROM"]
+addopts = "-m \"not rom\""
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
